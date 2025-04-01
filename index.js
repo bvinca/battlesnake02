@@ -91,7 +91,31 @@ function move(gameState) {
   // myBody = gameState.you.body;
 
   // TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
-  // opponents = gameState.board.snakes;
+  const opponents = gameState.board.snakes;
+  
+  for (const snake of opponents) {
+    // Skip ourselves
+    if (snake.id === gameState.you.id) continue;
+  
+    for (const bodyPart of snake.body) {
+      // Check left collision
+      if (myHead.x - 1 === bodyPart.x && myHead.y === bodyPart.y) {
+        isMoveSafe.left = false;
+      }
+      // Check right collision
+      if (myHead.x + 1 === bodyPart.x && myHead.y === bodyPart.y) {
+        isMoveSafe.right = false;
+      }
+      // Check down collision
+      if (myHead.x === bodyPart.x && myHead.y - 1 === bodyPart.y) {
+        isMoveSafe.down = false;
+      }
+      // Check up collision
+      if (myHead.x === bodyPart.x && myHead.y + 1 === bodyPart.y) {
+        isMoveSafe.up = false;
+      }
+    }
+  }
 
   // Are there any safe moves left?
   const safeMoves = Object.keys(isMoveSafe).filter(key => isMoveSafe[key]);
