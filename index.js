@@ -114,10 +114,6 @@ function move(gameState) {
 
 
   // TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
-<<<<<<< HEAD
-  // opponents = gameState.board.snakes;
- 
-=======
   const opponents = gameState.board.snakes;
   
   for (const snake of opponents) {
@@ -144,7 +140,6 @@ function move(gameState) {
     }
   }
 
->>>>>>> c249a23bc9dc94bf3e4018727ac6c76b8aeb4a51
   // Are there any safe moves left?
   const safeMoves = Object.keys(isMoveSafe).filter(key => isMoveSafe[key]);
   if (safeMoves.length == 0) {
