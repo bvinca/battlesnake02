@@ -4,10 +4,10 @@ import { checkSelfCollision } from './src/selfCollision.js';
 import { checkOtherSnakesCollision } from './src/otherSnakesCollision.js';
 import { checkWallCollision } from './src/wallCollision.js';
 import { findClosestFood, getDirectionToFood } from './src/foodTargeting.js';
+import { checkHeadToHeadCollision } from './src/headToHeadCollision.js';
 
 // info is called when you create your Battlesnake on play.battlesnake.com
 // and controls your Battlesnake's appearance
-// TIP: If you open your Battlesnake URL in a browser you should see this data
 function info() {
   console.log("INFO");
 
@@ -31,7 +31,6 @@ function end(gameState) {
 }
 
 // move is called on every turn and returns your next move
-
 function move(gameState) {
     let isMoveSafe = {
         up: true,
@@ -43,6 +42,7 @@ function move(gameState) {
     // Prevent moving backwards
     const myHead = gameState.you.body[0];
     const myNeck = gameState.you.body[1];
+    const myLength = gameState.you.body.length;
 
     if (myNeck.x < myHead.x) {
         isMoveSafe.left = false;
@@ -54,7 +54,7 @@ function move(gameState) {
         isMoveSafe.up = false;
     }
 
-    // Check collisions
+    // Check basic collisions
     isMoveSafe = checkWallCollision(
         myHead,
         gameState.board.width,
@@ -75,6 +75,14 @@ function move(gameState) {
         isMoveSafe
     );
 
+    // Check head-to-head collisions (added this new check)
+    isMoveSafe = checkHeadToHeadCollision(
+        myHead,
+        gameState.board.snakes,
+        myLength,
+        isMoveSafe
+    );
+
     // Find safe moves
     const safeMoves = Object.keys(isMoveSafe).filter(key => isMoveSafe[key]);
     if (safeMoves.length === 0) {
@@ -85,14 +93,12 @@ function move(gameState) {
     // Food targeting logic
     const closestFood = findClosestFood(myHead, gameState.board.food);
     if (closestFood) {
-        const foodDirections = getDirectionToFood(myHead, closestFood);
-
-        // Prioritize directions that move toward food
-        for (const direction of foodDirections) {
-            if (safeMoves.includes(direction)) {
-                console.log(`MOVE ${gameState.turn}: Moving toward food - ${direction}`);
-                return { move: direction };
-            }
+        const foodDirection = getDirectionToFood(myHead, closestFood);
+        
+        // Only move toward food if it's a safe move
+        if (foodDirection && safeMoves.includes(foodDirection)) {
+            console.log(`MOVE ${gameState.turn}: Moving toward food - ${foodDirection}`);
+            return { move: foodDirection };
         }
     }
 
