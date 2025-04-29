@@ -21,11 +21,9 @@ export function checkHeadToHeadCollision(myHead, opponents, myLength, isMoveSafe
       for (const direction in myPossibleMoves) {
         const myMove = myPossibleMoves[direction];
         for (const opponentMove of opponentPossibleMoves) {
-          if (myMove.x === opponentMove.x && myMove.y === opponentMove.y) {
-            if (snake.length >= myLength) {
+          if (myMove.x === opponentMove.x && myMove.y === opponentMove.y && snake.length >= myLength) {
               isMoveSafe[direction] = false;
             }
-          }
         }
       }
     }

@@ -1,7 +1,7 @@
 // selfCollision.js
 export function checkSelfCollision(myHead, myBody, isMoveSafe) {
-    for (let i = 1; i < myBody.length; i++) {
-      const bodyPart = myBody[i];
+    for (let index = 1; index < myBody.length; index++) {
+      const bodyPart = myBody[index];
   
       // Check left collision
       if (myHead.x - 1 === bodyPart.x && myHead.y === bodyPart.y) {
