@@ -1,8 +1,11 @@
-// selfCollision.js
-export function checkSelfCollision(myHead, myBody, isMoveSafe) {
-    for (let index = 1; index < myBody.length; index++) {
-      const bodyPart = myBody[index];
-  
+// other-snakes-collision.js
+// eslint-disable-next-line sonarjs/cognitive-complexity
+export function checkOtherSnakesCollision(myHead, opponents, myId, isMoveSafe) {
+  for (const snake of opponents) {
+    // Skip ourselves
+    if (snake.id === myId) continue;
+
+    for (const bodyPart of snake.body) {
       // Check left collision
       if (myHead.x - 1 === bodyPart.x && myHead.y === bodyPart.y) {
         isMoveSafe.left = false;
@@ -20,5 +23,6 @@ export function checkSelfCollision(myHead, myBody, isMoveSafe) {
         isMoveSafe.up = false;
       }
     }
-    return isMoveSafe;
   }
+  return isMoveSafe;
+}

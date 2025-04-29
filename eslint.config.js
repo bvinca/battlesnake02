@@ -4,11 +4,10 @@ import globals from "globals";
 import eslintCommentsPlugin from "eslint-plugin-eslint-comments";
 import unicornPlugin from "eslint-plugin-unicorn";
 import sonarPlugin from "eslint-plugin-sonarjs";
-import eslintConfigPrettier from "eslint-config-prettier/flat";
+import eslintConfigPrettier from "eslint-config-prettier";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
-
   js.configs.recommended,
 
   {
@@ -25,17 +24,25 @@ export default defineConfig([
     },
   },
 
-
   eslintConfigPrettier,
 
   {
     files: ["**/*.{js,mjs,cjs}"],
     languageOptions: {
-      globals: globals.browser,
+      globals: {
+        ...globals.node,
+        ...globals.es2021,
+      },
+      parserOptions: {
+        ecmaVersion: "latest",
+        sourceType: "module",
+      },
     },
     rules: {
       semi: ["error", "always"],
       quotes: ["error", "single"],
+      "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+      "sonarjs/pseudo-random": "off",
     },
   },
 ]);
