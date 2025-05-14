@@ -35,4 +35,6 @@ build/
 coverage/
 
 # GitHub artifacts
-.github/
+.github/*
+!.github/ISSUE_TEMPLATE/
+!.github/PULL_REQUEST_TEMPLATE/
