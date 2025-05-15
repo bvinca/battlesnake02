@@ -22,6 +22,6 @@
 - CHANGELOG.md file
 -  Added a food targeting feature
  
-# ## Fixed 
+### Fixed 
 - Refactored folder structure for clarity.
 - Fixed linting errors
