@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+- ISSUE_TEMPLATES with templates for both user stories and tasks 
+- Tail collision prediction system
+- Ability to move into opponent tails that will move
+- Food-aware tail movement validation
+
+### Changed 
+- Updated collision detection logic in `other-snakes-collision.js`
+- Modified movement strategy to consider moving tails
+
 ## [1.0.1] - 2025-05-20
 
 ### Fixed
