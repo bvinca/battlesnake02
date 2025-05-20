@@ -1,38 +1,32 @@
 // head-to-head-collision.js
 
-export function checkHeadToHeadCollision(
-  myHead,
-  opponents,
-  myLength,
-  isMoveSafe,
-) {
-  for (const snake of opponents) {
-    const opponentHead = snake.body[0];
+export function checkHeadToHeadCollision(myHead, opponents, myLength, isMoveSafe) {
+  const myPossibleMoves = {
+    left: { x: myHead.x - 1, y: myHead.y },
+    right: { x: myHead.x + 1, y: myHead.y },
+    down: { x: myHead.x, y: myHead.y - 1 },
+    up: { x: myHead.x, y: myHead.y + 1 },
+  };
 
-    const opponentPossibleMoves = [
-      { x: opponentHead.x - 1, y: opponentHead.y }, // left
-      { x: opponentHead.x + 1, y: opponentHead.y }, // right
-      { x: opponentHead.x, y: opponentHead.y - 1 }, // down
-      { x: opponentHead.x, y: opponentHead.y + 1 }, // up
-    ];
+  for (const direction in myPossibleMoves) {
+    const myMove = myPossibleMoves[direction];
 
-    const myPossibleMoves = {
-      left: { x: myHead.x - 1, y: myHead.y },
-      right: { x: myHead.x + 1, y: myHead.y },
-      down: { x: myHead.x, y: myHead.y - 1 },
-      up: { x: myHead.x, y: myHead.y + 1 },
-    };
+    for (const snake of opponents) {
+      const opponentHead = snake.body[0];
 
-    for (const direction in myPossibleMoves) {
-      const myMove = myPossibleMoves[direction];
-      for (const opponentMove of opponentPossibleMoves) {
-        if (
-          myMove.x === opponentMove.x &&
-          myMove.y === opponentMove.y &&
-          snake.length >= myLength
-        ) {
-          isMoveSafe[direction] = false;
-        }
+      const opponentPossibleMoves = [
+        { x: opponentHead.x - 1, y: opponentHead.y }, // left
+        { x: opponentHead.x + 1, y: opponentHead.y }, // right
+        { x: opponentHead.x, y: opponentHead.y - 1 }, // down
+        { x: opponentHead.x, y: opponentHead.y + 1 }, // up
+      ];
+
+      const threatensSameSquare = opponentPossibleMoves.some(
+        move => move.x === myMove.x && move.y === myMove.y
+      );
+
+      if (threatensSameSquare && snake.length >= myLength) {
+        isMoveSafe[direction] = false;
       }
     }
   }
