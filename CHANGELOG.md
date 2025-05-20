@@ -15,6 +15,9 @@
   - Food targeting functions
 - Increased overall automated test coverage to over 98%
 - Jest coverage reporting configured and maintained
+- Implemented flood fill algorithm to evaluate accessible board space for snake AI decisions
+- Added intelligent snake move selection based on maximizing future accessible space
+- Introduced Test-Driven Development (TDD) with Jest tests covering flood fill and move decision logic
 
 ### Changed 
 - Updated collision detection logic in `other-snakes-collision.js`
