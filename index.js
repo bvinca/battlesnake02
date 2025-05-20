@@ -14,9 +14,9 @@ function info() {
   return {
     apiversion: "1",
     author: "boraa",
-    color: "#b48cae",
-    head: "smart-caterpillar",
-    tail: "do-sammy",
+    color: "#325ca8",
+    head: "orca",
+    tail: "queen",
   };
 }
 
