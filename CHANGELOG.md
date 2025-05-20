@@ -7,6 +7,14 @@
 - Tail collision prediction system
 - Ability to move into opponent tails that will move
 - Food-aware tail movement validation
+- Added jest and eslint plugins for testing
+- Extensive unit tests for core modules including:
+  - Head-to-head collision detection
+  - Other snakes collision logic
+  - Tail collision handling
+  - Food targeting functions
+- Increased overall automated test coverage to over 98%
+- Jest coverage reporting configured and maintained
 
 ### Changed 
 - Updated collision detection logic in `other-snakes-collision.js`
