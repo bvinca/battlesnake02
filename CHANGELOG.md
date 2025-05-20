@@ -12,7 +12,13 @@
 - Updated collision detection logic in `other-snakes-collision.js`
 - Modified movement strategy to consider moving tails
 
+## [1.0.1] - 2025-05-20
+
+### Fixed
+- Hotfix: Updated the snakes apperance
+
 ## [1.0.0] - 2025-04-30
+First major release. 
 
 ### Added 
 - Added and configured default prettier
