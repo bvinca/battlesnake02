@@ -1,14 +1,21 @@
 # Changelog
 
-## [1.0.0] - 30-04-2025
-First major version release.
+## [1.0.1] - 2025-05-20
 
-## [Unreleased]
-- [Fixed] Fixed linting errors
-- [Added] Added and configured default prettier
-- [Added] Added and configured eslint
-- [Added] Added and cofigured .editorconfig
-- [Added] Pull Request template
-- [Added] CHANGELOG.md file
-- [Added] Added a food targeting feature
-- [Fixed] Refactored folder structure for clarity.
+### Fixed
+- Hotfix: Updated the snakes apperance
+
+## [1.0.0] - 2025-04-30
+First major release. 
+
+### Added 
+- Added and configured default prettier
+- Added and configured eslint
+- Added and cofigured .editorconfig
+- Pull Request template
+- CHANGELOG.md file
+-  Added a food targeting feature
+ 
+### Fixed 
+- Refactored folder structure for clarity.
+- Fixed linting errors
