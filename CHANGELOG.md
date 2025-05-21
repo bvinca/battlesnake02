@@ -33,7 +33,7 @@
 
 ### Fixed
 - Hotfix: Updated the snakes apperance
-
+- Hotfix: Update CHANGELOG
 
 ## [1.0.0] - 2025-04-30
 First major release. 
