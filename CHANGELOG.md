@@ -2,6 +2,21 @@
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-05-21
+
+### Added
+- Version bump to 1.1.0 in `package.json`
+- Updated `package-lock.json` for deterministic builds
+- Included changelog update for 1.1.0 release
+
+### Changed
+- Finalized dependencies and devDependecies for minor release
+
+## [1.0.1] - 2025-05-20
+
+### Fixed
+- Hotfix: Updated the snakes apperance
+
 ### Added
 - ISSUE_TEMPLATES with templates for both user stories and tasks 
 - Tail collision prediction system
@@ -23,10 +38,6 @@
 - Updated collision detection logic in `other-snakes-collision.js`
 - Modified movement strategy to consider moving tails
 
-## [1.0.1] - 2025-05-20
-
-### Fixed
-- Hotfix: Updated the snakes apperance
 
 ## [1.0.0] - 2025-04-30
 First major release. 
