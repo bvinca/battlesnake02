@@ -68,6 +68,7 @@ function move(gameState) {
     myHead,
     gameState.board.snakes,
     gameState.you.id,
+    gameState.board.food, // Pass food data
     isMoveSafe,
   );
 
