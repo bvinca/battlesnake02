@@ -5,19 +5,6 @@
 ## [1.1.0] - 2025-05-21
 
 ### Added
-- Version bump to 1.1.0 in `package.json`
-- Updated `package-lock.json` for deterministic builds
-- Included changelog update for 1.1.0 release
-
-### Changed
-- Finalized dependencies and devDependecies for minor release
-
-## [1.0.1] - 2025-05-20
-
-### Fixed
-- Hotfix: Updated the snakes apperance
-
-### Added
 - ISSUE_TEMPLATES with templates for both user stories and tasks 
 - Tail collision prediction system
 - Ability to move into opponent tails that will move
@@ -33,11 +20,19 @@
 - Implemented flood fill algorithm to evaluate accessible board space for snake AI decisions
 - Added intelligent snake move selection based on maximizing future accessible space
 - Introduced Test-Driven Development (TDD) with Jest tests covering flood fill and move decision logic
+- Version bump to 1.1.0 in `package.json`
+- Updated `package-lock.json` for deterministic builds
+- Included changelog update for 1.1.0 release
 
-### Changed 
+### Changed
 - Updated collision detection logic in `other-snakes-collision.js`
 - Modified movement strategy to consider moving tails
+- Finalized dependencies and devDependecies for minor release
 
+## [1.0.1] - 2025-05-20
+
+### Fixed
+- Hotfix: Updated the snakes apperance
 
 ## [1.0.0] - 2025-04-30
 First major release. 
