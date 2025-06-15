@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "chore"
+    rebase-strategy: "auto"
+    allow:
+      - dependency-type: "all"
+    labels:
+      - "dependencies"
+      - "security"
+    reviewers:
+      - "bvinca" 
