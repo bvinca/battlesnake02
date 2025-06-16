@@ -6,6 +6,7 @@ import { checkWallCollision } from "./src/wall-collision.js";
 import { findClosestFood, getDirectionToFood } from "./src/food-targeting.js";
 import { checkHeadToHeadCollision } from "./src/head-to-head-collision.js";
 import { findClosestPrey, getDirectionsToPrey } from "./src/hunt-smaller-snakes.js";
+import { aStar, directionFromTo } from "./src/a-star.js";
 
 
 // info is called when you create your Battlesnake on play.battlesnake.com
@@ -120,6 +121,21 @@ function move(gameState) {
   const nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
   console.log(`MOVE ${gameState.turn}: ${nextMove}`);
   return { move: nextMove };
+
+
+  //a star algorithm path 
+  const target = findClosestFood(myHead, gameState.board.food); // Or your own targeting logic
+  const snakeBodies = gameState.board.snakes.map(s => s.body);
+
+  if (target) {
+    const path = aStar(myHead, target, gameState.board, snakeBodies);
+      if (path && path.length > 1) {
+        const nextMove = directionFromTo(myHead, path[1]);
+          if (safeMoves.includes(nextMove)) {
+            return { move: nextMove };
+          }
+      }
+  }
 }
 
 runServer({
