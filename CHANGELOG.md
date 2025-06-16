@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### Added
+- Added `.github/dependabot.yml` to enable automated dependency and security updates.
+
 ## [1.1.0] - 2025-05-21
 
 ### Added
