@@ -1,4 +1,14 @@
-// tail-collision.js
+/**
+ * Tail collision detection utilities.
+ * @module tailCollision
+ */
+
+/**
+ * Checks if a snake is about to eat food.
+ * @param {Object} head - Snake head position.
+ * @param {Array<Object>} food - Array of food positions.
+ * @returns {boolean} True if about to eat, false otherwise.
+ */
 export function isAboutToEat(head, food) {
   return food.some(f =>
     (f.x === head.x - 1 && f.y === head.y) || // left
@@ -8,6 +18,14 @@ export function isAboutToEat(head, food) {
   );
 }
 
+/**
+ * Checks for collisions with movable tails.
+ * @param {Object} myHead - Current snake head position.
+ * @param {Array<Object>} opponents - Array of opponent snakes.
+ * @param {Array<Object>} food - Array of food positions.
+ * @param {Object} isMoveSafe - Object tracking safe moves.
+ * @returns {Object} Updated isMoveSafe object.
+ */
 export function checkTailCollision(myHead, opponents, food, isMoveSafe) {
   for (const snake of opponents) {
     // Skip if snake has no body

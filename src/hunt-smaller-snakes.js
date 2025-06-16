@@ -1,3 +1,15 @@
+/**
+ * Hunting logic for targeting smaller snakes.
+ * @module huntSmallerSnakes
+ */
+
+/**
+ * Finds the closest smaller snake to hunt.
+ * @param {Object} myHead - Current snake head position.
+ * @param {number} myLength - Current snake length.
+ * @param {Array<Object>} opponents - Array of opponent snakes.
+ * @returns {Object|null} The closest prey's head position or null if none found.
+ */
 export function findClosestPrey(myHead, myLength, opponents) {
   let closestPrey = null;
   let minDistance = Infinity;
@@ -16,6 +28,12 @@ export function findClosestPrey(myHead, myLength, opponents) {
   return closestPrey;
 }
 
+/**
+ * Gets directions to move toward the prey.
+ * @param {Object} myHead - Current snake head position.
+ * @param {Object} preyHead - Target prey's head position.
+ * @returns {Array<string>} Array of possible directions toward prey.
+ */
 export function getDirectionsToPrey(myHead, preyHead) {
   const directions = [];
   if (preyHead.x < myHead.x) directions.push("left");

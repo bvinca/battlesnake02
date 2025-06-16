@@ -1,4 +1,14 @@
-// food-targeting.js
+/**
+ * Food targeting and pathfinding utilities.
+ * @module foodTargeting
+ */
+
+/**
+ * Finds the closest food to the snake's head.
+ * @param {Object} myHead - Snake head position.
+ * @param {Array<Object>} food - Array of food positions.
+ * @returns {Object|undefined} The closest food item or undefined if no food.
+ */
 export function findClosestFood(myHead, food) {
   if (!food || food.length === 0) return;
 
@@ -19,6 +29,12 @@ export function findClosestFood(myHead, food) {
   return closestFood;
 }
 
+/**
+ * Gets directions to move toward the closest food.
+ * @param {Object} myHead - Snake head position.
+ * @param {Object} closestFood - Target food position.
+ * @returns {Array<string>} Array of possible directions toward food.
+ */
 export function getDirectionToFood(myHead, closestFood) {
   if (!closestFood) return;
 

@@ -1,6 +1,18 @@
-// other-snakes-collision.js
+/**
+ * Collision detection with other snakes.
+ * @module otherSnakesCollision
+ */
 import { checkTailCollision, isAboutToEat } from "./tail-collision.js";
 
+/**
+ * Checks for collisions with other snakes.
+ * @param {Object} myHead - Current snake head position.
+ * @param {Array<Object>} opponents - Array of opponent snakes.
+ * @param {string} myId - Current snake's ID.
+ * @param {Array<Object>} food - Array of food positions.
+ * @param {Object} isMoveSafe - Object tracking safe moves.
+ * @returns {Object} Updated isMoveSafe object.
+ */
 export function checkOtherSnakesCollision(myHead, opponents, myId, food, isMoveSafe) {
   for (const snake of opponents) {
     // Skip ourselves

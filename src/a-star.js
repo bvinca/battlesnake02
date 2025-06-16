@@ -1,9 +1,26 @@
-// src/a-star.js
+/**
+ * A* pathfinding algorithm implementation for Battlesnake.
+ * @module aStar
+ */
+
+/**
+ * Generates a string key from coordinates.
+ * @param {Object} coords - The coordinates object.
+ * @param {number} coords.x - The x-coordinate.
+ * @param {number} coords.y - The y-coordinate.
+ * @returns {string} The coordinates as a string key.
+ */
 
 function coordsKey({ x, y }) {
   return `${x},${y}`;
 }
 
+/**
+ * Reconstructs the path from the cameFrom map.
+ * @param {Map} cameFrom - Map tracking the path.
+ * @param {string} currentKey - The current node's key.
+ * @returns {Array<Object>} The reconstructed path as coordinate objects.
+ */
 function reconstructPath(cameFrom, currentKey) {
   const path = [];
   while (cameFrom.has(currentKey)) {
@@ -17,10 +34,28 @@ function reconstructPath(cameFrom, currentKey) {
   });
 }
 
+/**
+ * Calculates the Manhattan distance between two points.
+ * @param {Object} a - First point.
+ * @param {number} a.x - x-coordinate of first point.
+ * @param {number} a.y - y-coordinate of first point.
+ * @param {Object} b - Second point.
+ * @param {number} b.x - x-coordinate of second point.
+ * @param {number} b.y - y-coordinate of second point.
+ * @returns {number} The Manhattan distance.
+ */
 export function manhattan(a, b) {
   return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
 }
 
+/**
+ * Finds the shortest path using A* algorithm.
+ * @param {Object} start - Starting position.
+ * @param {Object} goal - Target position.
+ * @param {Object} board - Game board information.
+ * @param {Array<Array>} snakeBodies - Array of snake body segments.
+ * @returns {Array<Object>|null} The path as coordinate objects or null if no path found.
+ */
 export function aStar(start, goal, board, snakeBodies) {
   const width = board.width;
   const height = board.height;
@@ -81,6 +116,12 @@ export function aStar(start, goal, board, snakeBodies) {
   return null;
 }
 
+/**
+ * Determines the direction from one point to another.
+ * @param {Object} a - Starting position.
+ * @param {Object} b - Target position.
+ * @returns {string|null} The direction ("up", "down", "left", "right") or null if same position.
+ */
 // Convert a step to Battlesnake direction string
 export function directionFromTo(a, b) {
   if (b.x > a.x) return "right";
