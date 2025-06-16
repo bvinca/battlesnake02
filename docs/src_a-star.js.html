@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: src/a-star.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: src/a-star.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * A* pathfinding algorithm implementation for Battlesnake.
+ * @module aStar
+ */
+
+/**
+ * Generates a string key from coordinates.
+ * @param {Object} coords - The coordinates object.
+ * @param {number} coords.x - The x-coordinate.
+ * @param {number} coords.y - The y-coordinate.
+ * @returns {string} The coordinates as a string key.
+ */
+
+function coordsKey({ x, y }) {
+  return `${x},${y}`;
+}
+
+/**
+ * Reconstructs the path from the cameFrom map.
+ * @param {Map} cameFrom - Map tracking the path.
+ * @param {string} currentKey - The current node's key.
+ * @returns {Array&lt;Object>} The reconstructed path as coordinate objects.
+ */
+function reconstructPath(cameFrom, currentKey) {
+  const path = [];
+  while (cameFrom.has(currentKey)) {
+    path.unshift(currentKey);
+    currentKey = cameFrom.get(currentKey);
+  }
+  path.unshift(currentKey); // Add start node
+  return path.map(str => {
+    const [x, y] = str.split(',').map(Number);
+    return { x, y };
+  });
+}
+
+/**
+ * Calculates the Manhattan distance between two points.
+ * @param {Object} a - First point.
+ * @param {number} a.x - x-coordinate of first point.
+ * @param {number} a.y - y-coordinate of first point.
+ * @param {Object} b - Second point.
+ * @param {number} b.x - x-coordinate of second point.
+ * @param {number} b.y - y-coordinate of second point.
+ * @returns {number} The Manhattan distance.
+ */
+export function manhattan(a, b) {
+  return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
+}
+
+/**
+ * Finds the shortest path using A* algorithm.
+ * @param {Object} start - Starting position.
+ * @param {Object} goal - Target position.
+ * @param {Object} board - Game board information.
+ * @param {Array&lt;Array>} snakeBodies - Array of snake body segments.
+ * @returns {Array&lt;Object>|null} The path as coordinate objects or null if no path found.
+ */
+export function aStar(start, goal, board, snakeBodies) {
+  const width = board.width;
+  const height = board.height;
+
+  const closedSet = new Set();
+  const openSet = new Set([coordsKey(start)]);
+  const cameFrom = new Map();
+
+  const gScore = new Map([[coordsKey(start), 0]]);
+  const fScore = new Map([[coordsKey(start), manhattan(start, goal)]]);
+
+  function isObstacle(x, y) {
+    for (const snake of snakeBodies) {
+      for (const part of snake) {
+        if (part.x === x &amp;&amp; part.y === y) return true;
+      }
+    }
+    return false;
+  }
+
+  while (openSet.size > 0) {
+    // Get node with lowest fScore
+    let currentKey = null;
+    let currentF = Infinity;
+    for (const key of openSet) {
+      if (fScore.get(key) &lt; currentF) {
+        currentF = fScore.get(key);
+        currentKey = key;
+      }
+    }
+    if (!currentKey) break;
+    const [cx, cy] = currentKey.split(',').map(Number);
+    if (cx === goal.x &amp;&amp; cy === goal.y) {
+      // Success: reconstruct path
+      return reconstructPath(cameFrom, currentKey);
+    }
+
+    openSet.delete(currentKey);
+    closedSet.add(currentKey);
+
+    for (const [dx, dy] of [[1,0], [-1,0], [0,1], [0,-1]]) {
+      const nx = cx + dx;
+      const ny = cy + dy;
+      if (nx &lt; 0 || ny &lt; 0 || nx >= width || ny >= height) continue;
+      if (isObstacle(nx, ny)) continue;
+      const neighborKey = `${nx},${ny}`;
+      if (closedSet.has(neighborKey)) continue;
+      const tentativeG = gScore.get(currentKey) + 1;
+      if (!openSet.has(neighborKey)) openSet.add(neighborKey);
+      else if (tentativeG >= (gScore.get(neighborKey) || Infinity)) continue;
+
+      cameFrom.set(neighborKey, currentKey);
+      gScore.set(neighborKey, tentativeG);
+      fScore.set(neighborKey, tentativeG + manhattan({ x: nx, y: ny }, goal));
+    }
+  }
+  // No path found
+  return null;
+}
+
+/**
+ * Determines the direction from one point to another.
+ * @param {Object} a - Starting position.
+ * @param {Object} b - Target position.
+ * @returns {string|null} The direction ("up", "down", "left", "right") or null if same position.
+ */
+// Convert a step to Battlesnake direction string
+export function directionFromTo(a, b) {
+  if (b.x > a.x) return "right";
+  if (b.x &lt; a.x) return "left";
+  if (b.y > a.y) return "up";
+  if (b.y &lt; a.y) return "down";
+  return null;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-aStar.html">aStar</a></li><li><a href="module-floodFill.html">floodFill</a></li><li><a href="module-foodTargeting.html">foodTargeting</a></li><li><a href="module-headToHead.html">headToHead</a></li><li><a href="module-huntSmallerSnakes.html">huntSmallerSnakes</a></li><li><a href="module-index.html">index</a></li><li><a href="module-otherSnakesCollision.html">otherSnakesCollision</a></li><li><a href="module-selfCollision.html">selfCollision</a></li><li><a href="module-tailCollision.html">tailCollision</a></li><li><a href="module-wallCollision.html">wallCollision</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Jun 16 2025 22:46:04 GMT+0300 (Eastern European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,3 +1,7 @@
+/**
+ * Main Battlesnake game logic and server entry point.
+ * @module index
+ */
 import runServer from "./server.js";
 import { checkSelfCollision } from "./src/self-collision.js";
 import { checkOtherSnakesCollision } from "./src/other-snakes-collision.js";
@@ -7,6 +11,10 @@ import { checkHeadToHeadCollision } from "./src/head-to-head.js";
 import { findClosestPrey, getDirectionsToPrey } from "./src/hunt-smaller-snakes.js";
 import { aStar, directionFromTo } from "./src/a-star.js";
 
+/**
+ * Returns metadata about the Battlesnake (name, color, etc.).
+ * @returns {Object} Snake configuration.
+ */
 function info() {
   return {
     apiversion: "1",
@@ -17,14 +25,26 @@ function info() {
   };
 }
 
+/**
+ * Called when a game starts.
+ * @param {Object} _gameState - Current game state.
+ */
 function start(_gameState) {
   console.log("GAME START");
 }
 
+/**
+ * Called when a game ends.
+ * @param {Object} _gameState - Final game state.
+ */
 function end(_gameState) {
   console.log("GAME OVER");
 }
-
+/**
+ * Determines the next move for the snake.
+ * @param {Object} gameState - Current game state.
+ * @returns {Object} The chosen move.
+ */
 function move(gameState) {
   let isMoveSafe = { up: true, down: true, left: true, right: true };
 

@@ -1,4 +1,15 @@
-// self-collision.js
+/**
+ * Self-collision detection utilities.
+ * @module selfCollision
+ */
+
+/**
+ * Checks for collisions with own body.
+ * @param {Object} myHead - Current snake head position.
+ * @param {Array<Object>} myBody - Current snake's body segments.
+ * @param {Object} isMoveSafe - Object tracking safe moves.
+ * @returns {Object} Updated isMoveSafe object.
+ */
 export function checkSelfCollision(myHead, myBody, isMoveSafe) {
   for (let index = 1; index < myBody.length; index++) {
     const bodyPart = myBody[index];
