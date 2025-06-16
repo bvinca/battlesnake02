@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: foodTargeting</title>
+    <title>JSDoc: Module: index</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: foodTargeting</h1>
+    <h1 class="page-title">Module: index</h1>
 
     
 
@@ -38,7 +38,7 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>Food targeting and pathfinding utilities.</p></div>
+            <div class="description"><p>Main Battlesnake game logic and server entry point.</p></div>
         
 
         
@@ -87,7 +87,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_food-targeting.js.html">src/food-targeting.js</a>, <a href="src_food-targeting.js.html#line1">line 1</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -144,7 +144,7 @@
     
 
     
-    <h4 class="name" id=".findClosestFood"><span class="type-signature">(static) </span>findClosestFood<span class="signature">(myHead, food)</span><span class="type-signature"> &rarr; {Object|undefined}</span></h4>
+    <h4 class="name" id="~end"><span class="type-signature">(inner) </span>end<span class="signature">(_gameState)</span><span class="type-signature"></span></h4>
     
 
     
@@ -152,7 +152,7 @@
 
 
 <div class="description">
-    <p>Finds the closest food to the snake's head.</p>
+    <p>Called when a game ends.</p>
 </div>
 
 
@@ -188,7 +188,7 @@
 
         <tr>
             
-                <td class="name"><code>myHead</code></td>
+                <td class="name"><code>_gameState</code></td>
             
 
             <td class="type">
@@ -204,30 +204,7 @@
 
             
 
-            <td class="description last"><p>Snake head position.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>food</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;Object></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Array of food positions.</p></td>
+            <td class="description last"><p>Final game state.</p></td>
         </tr>
 
     
@@ -268,7 +245,95 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_food-targeting.js.html">src/food-targeting.js</a>, <a href="src_food-targeting.js.html#line12">line 12</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line40">line 40</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~info"><span class="type-signature">(inner) </span>info<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Returns metadata about the Battlesnake (name, color, etc.).</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line18">line 18</a>
     </li></ul></dd>
     
 
@@ -297,7 +362,7 @@
 
         
 <div class="param-desc">
-    <p>The closest food item or undefined if no food.</p>
+    <p>Snake configuration.</p>
 </div>
 
 
@@ -309,9 +374,6 @@
     <dd>
         
 <span class="param-type">Object</span>
-|
-
-<span class="param-type">undefined</span>
 
 
     </dd>
@@ -329,7 +391,7 @@
     
 
     
-    <h4 class="name" id=".getDirectionToFood"><span class="type-signature">(static) </span>getDirectionToFood<span class="signature">(myHead, closestFood)</span><span class="type-signature"> &rarr; {Array.&lt;string>}</span></h4>
+    <h4 class="name" id="~move"><span class="type-signature">(inner) </span>move<span class="signature">(gameState)</span><span class="type-signature"> &rarr; {Object}</span></h4>
     
 
     
@@ -337,7 +399,7 @@
 
 
 <div class="description">
-    <p>Gets directions to move toward the closest food.</p>
+    <p>Determines the next move for the snake.</p>
 </div>
 
 
@@ -373,7 +435,7 @@
 
         <tr>
             
-                <td class="name"><code>myHead</code></td>
+                <td class="name"><code>gameState</code></td>
             
 
             <td class="type">
@@ -389,30 +451,7 @@
 
             
 
-            <td class="description last"><p>Snake head position.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>closestFood</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Target food position.</p></td>
+            <td class="description last"><p>Current game state.</p></td>
         </tr>
 
     
@@ -453,7 +492,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_food-targeting.js.html">src/food-targeting.js</a>, <a href="src_food-targeting.js.html#line38">line 38</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line48">line 48</a>
     </li></ul></dd>
     
 
@@ -482,7 +521,7 @@
 
         
 <div class="param-desc">
-    <p>Array of possible directions toward food.</p>
+    <p>The chosen move.</p>
 </div>
 
 
@@ -493,13 +532,150 @@
     </dt>
     <dd>
         
-<span class="param-type">Array.&lt;string></span>
+<span class="param-type">Object</span>
 
 
     </dd>
 </dl>
 
     
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~start"><span class="type-signature">(inner) </span>start<span class="signature">(_gameState)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Called when a game starts.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>_gameState</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Current game state.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line32">line 32</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

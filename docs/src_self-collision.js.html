@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: src/self-collision.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,53 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: src/self-collision.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Self-collision detection utilities.
+ * @module selfCollision
+ */
 
+/**
+ * Checks for collisions with own body.
+ * @param {Object} myHead - Current snake head position.
+ * @param {Array&lt;Object>} myBody - Current snake's body segments.
+ * @param {Object} isMoveSafe - Object tracking safe moves.
+ * @returns {Object} Updated isMoveSafe object.
+ */
+export function checkSelfCollision(myHead, myBody, isMoveSafe) {
+  for (let index = 1; index &lt; myBody.length; index++) {
+    const bodyPart = myBody[index];
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    // Check left collision
+    if (myHead.x - 1 === bodyPart.x &amp;&amp; myHead.y === bodyPart.y) {
+      isMoveSafe.left = false;
+    }
+    // Check right collision
+    if (myHead.x + 1 === bodyPart.x &amp;&amp; myHead.y === bodyPart.y) {
+      isMoveSafe.right = false;
+    }
+    // Check down collision
+    if (myHead.x === bodyPart.x &amp;&amp; myHead.y - 1 === bodyPart.y) {
+      isMoveSafe.down = false;
+    }
+    // Check up collision
+    if (myHead.x === bodyPart.x &amp;&amp; myHead.y + 1 === bodyPart.y) {
+      isMoveSafe.up = false;
+    }
+  }
+  return isMoveSafe;
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

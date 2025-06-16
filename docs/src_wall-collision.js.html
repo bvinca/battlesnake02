@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: src/wall-collision.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,37 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: src/wall-collision.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Wall collision detection utilities.
+ * @module wallCollision
+ */
 
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+/**
+ * Checks for collisions with walls.
+ * @param {Object} myHead - Current snake head position.
+ * @param {number} width - Board width.
+ * @param {number} height - Board height.
+ * @param {Object} isMoveSafe - Object tracking safe moves.
+ * @returns {Object} Updated isMoveSafe object.
+ */
+export function checkWallCollision(myHead, width, height, isMoveSafe) {
+  if (myHead.x &lt;= 0) isMoveSafe.left = false;
+  if (myHead.x >= width - 1) isMoveSafe.right = false;
+  if (myHead.y &lt;= 0) isMoveSafe.down = false;
+  if (myHead.y >= height - 1) isMoveSafe.up = false;
+  return isMoveSafe;
+}</code></pre>
+        </article>
+    </section>
 
 
 

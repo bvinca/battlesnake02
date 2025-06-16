@@ -9,7 +9,8 @@
     "test:coverage": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "docs": "jsdoc -c jsdoc.json -r src/ -d docs"
+    "docs": "jsdoc -c jsdoc.json -r src/ -d docs/",
+    "docs-config": "npx jsdoc -c jsdoc.config.json -r"
   },
   "dependencies": {
     "@types/node": "^18.0.6",
