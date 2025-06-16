@@ -8,7 +8,8 @@
     "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
     "test:coverage": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "docs": "jsdoc -c jsdoc.json -r src/ -d docs"
   },
   "dependencies": {
     "@types/node": "^18.0.6",
