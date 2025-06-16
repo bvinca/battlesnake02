@@ -5,6 +5,8 @@ import { checkOtherSnakesCollision } from "./src/other-snakes-collision.js";
 import { checkWallCollision } from "./src/wall-collision.js";
 import { findClosestFood, getDirectionToFood } from "./src/food-targeting.js";
 import { checkHeadToHeadCollision } from "./src/head-to-head-collision.js";
+import { findClosestPrey, getDirectionsToPrey } from "./src/hunt-smaller-snakes.js";
+
 
 // info is called when you create your Battlesnake on play.battlesnake.com
 // and controls your Battlesnake's appearance
@@ -87,30 +89,11 @@ function move(gameState) {
     return { move: "down" };
   }
 
-    // Hunt smaller snakes logic
-  const opponents = gameState.board.snakes.filter(snake => snake.id !== gameState.you.id);
-  let closestPrey = null;
-  let minPreyDistance = Infinity;
-  for (const snake of opponents) {
-    if (snake.body.length < myLength) {
-      const preyHead = snake.body[0];
-      const dist = Math.abs(myHead.x - preyHead.x) + Math.abs(myHead.y - preyHead.y);
-      if (dist < minPreyDistance) {
-        minPreyDistance = dist;
-        closestPrey = preyHead;
-      }
-    }
-  }
-  if (closestPrey) {
-    // Try to move toward the closest prey if the move is safe
-    const dx = closestPrey.x - myHead.x;
-    const dy = closestPrey.y - myHead.y;
-    let preyDirections = [];
-    if (dx < 0) preyDirections.push("left");
-    if (dx > 0) preyDirections.push("right");
-    if (dy < 0) preyDirections.push("down");
-    if (dy > 0) preyDirections.push("up");
-    // Pick any safe move toward prey
+  // Hunt Smaller Snakes logic
+  const opponents = gameState.board.snakes.filter(s => s.id !== gameState.you.id);
+  const prey = findClosestPrey(myHead, myLength, opponents);
+  if (prey) {
+    const preyDirections = getDirectionsToPrey(myHead, prey);
     for (const dir of preyDirections) {
       if (safeMoves.includes(dir)) {
         console.log(`MOVE ${gameState.turn}: Hunting smaller snake - ${dir}`);
