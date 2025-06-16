@@ -4,6 +4,7 @@
 
 ### Added
 - Added `.github/dependabot.yml` to enable automated dependency and security updates.
+- The snake now hunts and targets smaller opponent snakes, pursuing their heads when a safe path is available.
 
 ## [1.1.0] - 2025-05-21
 
