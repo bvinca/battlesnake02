@@ -1,19 +1,13 @@
-// index.js
 import runServer from "./server.js";
 import { checkSelfCollision } from "./src/self-collision.js";
 import { checkOtherSnakesCollision } from "./src/other-snakes-collision.js";
 import { checkWallCollision } from "./src/wall-collision.js";
 import { findClosestFood, getDirectionToFood } from "./src/food-targeting.js";
-import { checkHeadToHeadCollision } from "./src/head-to-head-collision.js";
+import { checkHeadToHeadCollision } from "./src/head-to-head.js";
 import { findClosestPrey, getDirectionsToPrey } from "./src/hunt-smaller-snakes.js";
 import { aStar, directionFromTo } from "./src/a-star.js";
 
-
-// info is called when you create your Battlesnake on play.battlesnake.com
-// and controls your Battlesnake's appearance
 function info() {
-  console.log("INFO");
-
   return {
     apiversion: "1",
     author: "boraa",
@@ -23,124 +17,62 @@ function info() {
   };
 }
 
-// start is called when your Battlesnake begins a game
 function start(_gameState) {
   console.log("GAME START");
 }
 
-// end is called when your Battlesnake finishes a game
 function end(_gameState) {
-  console.log("GAME OVER\n");
+  console.log("GAME OVER");
 }
 
-// move is called on every turn and returns your next move
 function move(gameState) {
-  let isMoveSafe = {
-    up: true,
-    down: true,
-    left: true,
-    right: true,
-  };
+  let isMoveSafe = { up: true, down: true, left: true, right: true };
 
-  // Prevent moving backwards
   const myHead = gameState.you.body[0];
   const myNeck = gameState.you.body[1];
   const myLength = gameState.you.body.length;
-
-  if (myNeck.x < myHead.x) {
-    isMoveSafe.left = false;
-  } else if (myNeck.x > myHead.x) {
-    isMoveSafe.right = false;
-  } else if (myNeck.y < myHead.y) {
-    isMoveSafe.down = false;
-  } else if (myNeck.y > myHead.y) {
-    isMoveSafe.up = false;
-  }
-
-  // Check basic collisions
-  isMoveSafe = checkWallCollision(
-    myHead,
-    gameState.board.width,
-    gameState.board.height,
-    isMoveSafe,
-  );
-
-  isMoveSafe = checkSelfCollision(myHead, gameState.you.body, isMoveSafe);
-
-  isMoveSafe = checkOtherSnakesCollision(
-    myHead,
-    gameState.board.snakes,
-    gameState.you.id,
-    gameState.board.food, // Pass food data
-    isMoveSafe,
-  );
-
-  // Check head-to-head collisions (added this new check)
-  isMoveSafe = checkHeadToHeadCollision(
-    myHead,
-    gameState.board.snakes,
-    myLength,
-    isMoveSafe,
-  );
-
-  // Find safe moves
-  const safeMoves = Object.keys(isMoveSafe).filter((key) => isMoveSafe[key]);
-  if (safeMoves.length === 0) {
-    console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving down`);
-    return { move: "down" };
-  }
-
-  // Hunt Smaller Snakes logic
   const opponents = gameState.board.snakes.filter(s => s.id !== gameState.you.id);
-  const prey = findClosestPrey(myHead, myLength, opponents);
-  if (prey) {
-    const preyDirections = getDirectionsToPrey(myHead, prey);
-    for (const dir of preyDirections) {
-      if (safeMoves.includes(dir)) {
-        console.log(`MOVE ${gameState.turn}: Hunting smaller snake - ${dir}`);
-        return { move: dir };
-      }
+
+  // Prevent moving backwards
+  if (myNeck.x < myHead.x) isMoveSafe.left = false;
+  if (myNeck.x > myHead.x) isMoveSafe.right = false;
+  if (myNeck.y < myHead.y) isMoveSafe.down = false;
+  if (myNeck.y > myHead.y) isMoveSafe.up = false;
+
+  // Collision checks
+  isMoveSafe = checkWallCollision(myHead, gameState.board.width, gameState.board.height, isMoveSafe);
+  isMoveSafe = checkSelfCollision(myHead, gameState.you.body, isMoveSafe);
+  isMoveSafe = checkOtherSnakesCollision(myHead, gameState.board.snakes, gameState.you.id, gameState.board.food, isMoveSafe);
+  isMoveSafe = checkHeadToHeadCollision(myHead, opponents, myLength, isMoveSafe);
+
+  const safeMoves = Object.keys(isMoveSafe).filter(dir => isMoveSafe[dir]);
+  if (safeMoves.length === 0) return { move: "down" };
+
+  // Hunting logic (activated when at least 25% larger)
+  if (myLength >= opponents.reduce((min, s) => Math.min(min, s.body.length), myLength) * 1.25) {
+    const prey = findClosestPrey(myHead, myLength, opponents);
+    if (prey) {
+      const preyDirections = getDirectionsToPrey(myHead, prey);
+      const validHuntMoves = preyDirections.filter(dir => safeMoves.includes(dir));
+      if (validHuntMoves.length > 0) return { move: validHuntMoves[0] };
     }
   }
 
-  // Food targeting logic
+  // Food finding
   const closestFood = findClosestFood(myHead, gameState.board.food);
   if (closestFood) {
-    const foodDirection = getDirectionToFood(myHead, closestFood);
-
-    // Only move toward food if it's a safe move
-    if (foodDirection && safeMoves.includes(foodDirection)) {
-      console.log(
-        `MOVE ${gameState.turn}: Moving toward food - ${foodDirection}`,
-      );
-      return { move: foodDirection };
+    const path = aStar(myHead, closestFood, gameState.board, gameState.board.snakes.map(s => s.body));
+    if (path?.length > 1) {
+      const nextMove = directionFromTo(myHead, path[1]);
+      if (safeMoves.includes(nextMove)) return { move: nextMove };
     }
+    
+    const foodDir = getDirectionToFood(myHead, closestFood);
+    if (foodDir && safeMoves.includes(foodDir)) return { move: foodDir };
   }
 
-  // If no food-directed moves are safe, choose randomly from remaining safe moves
-  const nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
-  console.log(`MOVE ${gameState.turn}: ${nextMove}`);
-  return { move: nextMove };
-
-
-  //a star algorithm path 
-  const target = findClosestFood(myHead, gameState.board.food); // Or your own targeting logic
-  const snakeBodies = gameState.board.snakes.map(s => s.body);
-
-  if (target) {
-    const path = aStar(myHead, target, gameState.board, snakeBodies);
-      if (path && path.length > 1) {
-        const nextMove = directionFromTo(myHead, path[1]);
-          if (safeMoves.includes(nextMove)) {
-            return { move: nextMove };
-          }
-      }
-  }
+  // Final fallback
+  return { move: safeMoves[Math.floor(Math.random() * safeMoves.length)] };
 }
 
-runServer({
-  info: info,
-  start: start,
-  move: move,
-  end: end,
-});
+runServer({ info, start, move, end });
