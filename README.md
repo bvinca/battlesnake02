@@ -9,9 +9,11 @@ This project is a great starting point for anyone wanting to program their first
 [![Run on Replit](https://repl.it/badge/github/BattlesnakeOfficial/starter-snake-javascript)](https://replit.com/@Battlesnake/starter-snake-javascript)
 
 ## Description
+
 An official Battlesnake template written in JavaScript that implements a competitive AI snake for the Battlesnake game platform. The snake includes advanced collision avoidance, food targeting, and hunting strategies for smaller opponents.
 
 ## Technologies Used
+
 - Node.js
 - Express.js
 - JSDoc (for documentation)
@@ -19,12 +21,14 @@ An official Battlesnake template written in JavaScript that implements a competi
 - ESLint + Prettier (for code quality)
 - SonarJS (for code analysis)
 
-### Prerequisites 
+### Prerequisites
+
 - Node.js v18 or higher
 - npm or yarn
 - Battlesnake account (for testing on play.battlesnake.com)
 
-### Folder Structure 
+### Folder Structure
+
 ```
 .
 ├── .github/                          # GitHub templates
@@ -67,47 +71,60 @@ An official Battlesnake template written in JavaScript that implements a competi
 ```
 
 ## How to Run Tests
-Jest is used for unit testing. Run all tests with:     
-    npm test
+
+Jest is used for unit testing. Run all tests with:  
+ npm test
+
 ## How to Run Battlesnake
+
 1. Install dependencies:
    ```bash
    npm install
+   ```
 2. Start the server:
    ```bash
-   npm run start 
+   npm run start
+   ```
 
-Alternatively you can run the app on replit: 
+Alternatively you can run the app on replit:
 
 1. Click the green 'Run' button to start your Battlesnake.
 2. Use your repl.co URL to register your Battlesnake and play games on [play.battlesnake.com](https://play.battlesnake.com).
 
-## How to Developer mode   
-  npm run dev
+## How to Developer mode
 
-## How to Production mode   
-  npm run start
-  
+npm run dev
+
+## How to Production mode
+
+npm run start
+
 ## Configuration Files
-  - .prettierrc.json — Prettier formatting rules
-  - eslint.config.js — Linting rules
-  - jest.config.js — Testing configuration
-  - jsdoc.config.json — Documentation generation
+
+- .prettierrc.json — Prettier formatting rules
+- eslint.config.js — Linting rules
+- jest.config.js — Testing configuration
+- jsdoc.config.json — Documentation generation
+
 ## Variables & Launch Parameters
 
 ### HTTP Endpoints
+
 The Battlesnake engine will send requests to the following endpoints:
 
-| Endpoint    | Method | Description |
-|-------------|--------|-------------|
-| `/`         | GET    | Responds with metadata about your Battlesnake |
-| `/start`    | POST   | Initializes your Battlesnake at the start of a game |
-| `/move`     | POST   | Called on every turn to decide your move |
-| `/end`      | POST   | Called at the end of each game for cleanup |
+| Endpoint | Method | Description                                         |
+| -------- | ------ | --------------------------------------------------- |
+| `/`      | GET    | Responds with metadata about your Battlesnake       |
+| `/start` | POST   | Initializes your Battlesnake at the start of a game |
+| `/move`  | POST   | Called on every turn to decide your move            |
+| `/end`   | POST   | Called at the end of each game for cleanup          |
 
 ### Environment Variables
+
 ```env
 PORT=8000  # Defines the port for the Express server
 ```
-### Licence 
+
+### Licence
+
 This project is licensed under the MIT License.

@@ -11,7 +11,12 @@
  * @param {Object} isMoveSafe - Object tracking safe moves.
  * @returns {Object} Updated isMoveSafe object.
  */
-export function checkHeadToHeadCollision(myHead, opponents, myLength, isMoveSafe) {
+export function checkHeadToHeadCollision(
+  myHead,
+  opponents,
+  myLength,
+  isMoveSafe,
+) {
   const myPossibleMoves = {
     left: { x: myHead.x - 1, y: myHead.y },
     right: { x: myHead.x + 1, y: myHead.y },
@@ -33,7 +38,7 @@ export function checkHeadToHeadCollision(myHead, opponents, myLength, isMoveSafe
       ];
 
       const threatensSameSquare = opponentPossibleMoves.some(
-        move => move.x === myMove.x && move.y === myMove.y
+        (move) => move.x === myMove.x && move.y === myMove.y,
       );
 
       if (threatensSameSquare && snake.length >= myLength) {

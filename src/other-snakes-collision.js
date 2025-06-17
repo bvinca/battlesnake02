@@ -2,7 +2,7 @@
  * Collision detection with other snakes.
  * @module otherSnakesCollision
  */
-import { checkTailCollision, isAboutToEat } from "./tail-collision.js";
+import { checkTailCollision, isAboutToEat } from './tail-collision.js';
 
 /**
  * Checks for collisions with other snakes.
@@ -13,19 +13,25 @@ import { checkTailCollision, isAboutToEat } from "./tail-collision.js";
  * @param {Object} isMoveSafe - Object tracking safe moves.
  * @returns {Object} Updated isMoveSafe object.
  */
-export function checkOtherSnakesCollision(myHead, opponents, myId, food, isMoveSafe) {
+// eslint-disable-next-line sonarjs/cognitive-complexity
+export function checkOtherSnakesCollision(
+  myHead,
+  opponents,
+  myId,
+  food,
+  isMoveSafe,
+) {
   for (const snake of opponents) {
     // Skip ourselves
     if (snake.id === myId) continue;
 
-    for (let i = 0; i < snake.body.length; i++) {
-      const bodyPart = snake.body[i];
+    for (let index = 0; index < snake.body.length; index++) {
+      const bodyPart = snake.body[index];
 
       // Skip the tail if it's about to move
-      const isTail = i === snake.body.length - 1;
-      const willTailMove = isTail &&
-        snake.health < 100 &&
-        !isAboutToEat(snake.body[0], food);
+      const isTail = index === snake.body.length - 1;
+      const willTailMove =
+        isTail && snake.health < 100 && !isAboutToEat(snake.body[0], food);
 
       if (willTailMove) continue;
 

@@ -16,7 +16,7 @@
   "opts": {
     "destination": "jsdocs/",
     "encoding": "utf8",
-    "recurse": true,   
+    "recurse": true,
     "verbose": true
   },
   "templates": {

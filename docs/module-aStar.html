@@ -1,1324 +1,589 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>JSDoc: Module: aStar</title>
 
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="styles/prettify-tomorrow.css"
+    />
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css" />
+  </head>
 
-<body>
+  <body>
+    <div id="main">
+      <h1 class="page-title">Module: aStar</h1>
 
-<div id="main">
+      <section>
+        <header></header>
 
-    <h1 class="page-title">Module: aStar</h1>
+        <article>
+          <div class="container-overview">
+            <div class="description">
+              <p>A* pathfinding algorithm implementation for Battlesnake.</p>
+            </div>
 
-    
+            <dl class="details">
+              <dt class="tag-source">Source:</dt>
+              <dd class="tag-source">
+                <ul class="dummy">
+                  <li>
+                    <a href="src_a-star.js.html">src/a-star.js</a>,
+                    <a href="src_a-star.js.html#line1">line 1</a>
+                  </li>
+                </ul>
+              </dd>
+            </dl>
+          </div>
 
+          <h3 class="subsection-title">Methods</h3>
 
+          <h4 class="name" id=".aStar">
+            <span class="type-signature">(static) </span>aStar<span
+              class="signature"
+              >(start, goal, board, snakeBodies)</span
+            ><span class="type-signature">
+              &rarr; {Array.&lt;Object>|null}</span
+            >
+          </h4>
 
+          <div class="description">
+            <p>Finds the shortest path using A* algorithm.</p>
+          </div>
 
-<section>
+          <h5>Parameters:</h5>
 
-<header>
-    
-        
-            
-        
-    
-</header>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
 
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>A* pathfinding algorithm implementation for Battlesnake.</p></div>
-        
+                <th>Type</th>
 
-        
-            
+                <th class="last">Description</th>
+              </tr>
+            </thead>
 
+            <tbody>
+              <tr>
+                <td class="name"><code>start</code></td>
 
+                <td class="type">
+                  <span class="param-type">Object</span>
+                </td>
 
+                <td class="description last"><p>Starting position.</p></td>
+              </tr>
 
+              <tr>
+                <td class="name"><code>goal</code></td>
 
+                <td class="type">
+                  <span class="param-type">Object</span>
+                </td>
 
+                <td class="description last"><p>Target position.</p></td>
+              </tr>
 
+              <tr>
+                <td class="name"><code>board</code></td>
 
+                <td class="type">
+                  <span class="param-type">Object</span>
+                </td>
 
+                <td class="description last"><p>Game board information.</p></td>
+              </tr>
 
+              <tr>
+                <td class="name"><code>snakeBodies</code></td>
 
+                <td class="type">
+                  <span class="param-type">Array.&lt;Array></span>
+                </td>
 
+                <td class="description last">
+                  <p>Array of snake body segments.</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="src_a-star.js.html">src/a-star.js</a>,
+                  <a href="src_a-star.js.html#line59">line 59</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
 
+          <h5>Returns:</h5>
 
-<dl class="details">
+          <div class="param-desc">
+            <p>The path as coordinate objects or null if no path found.</p>
+          </div>
 
-    
+          <dl>
+            <dt>Type</dt>
+            <dd>
+              <span class="param-type">Array.&lt;Object></span>
+              |
 
-    
+              <span class="param-type">null</span>
+            </dd>
+          </dl>
 
-    
+          <h4 class="name" id=".directionFromTo">
+            <span class="type-signature">(static) </span>directionFromTo<span
+              class="signature"
+              >(a, b)</span
+            ><span class="type-signature"> &rarr; {string|null}</span>
+          </h4>
 
-    
+          <div class="description">
+            <p>Determines the direction from one point to another.</p>
+          </div>
 
-    
+          <h5>Parameters:</h5>
 
-    
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
 
-    
+                <th>Type</th>
 
-    
+                <th class="last">Description</th>
+              </tr>
+            </thead>
 
-    
+            <tbody>
+              <tr>
+                <td class="name"><code>a</code></td>
 
-    
+                <td class="type">
+                  <span class="param-type">Object</span>
+                </td>
 
-    
+                <td class="description last"><p>Starting position.</p></td>
+              </tr>
 
-    
+              <tr>
+                <td class="name"><code>b</code></td>
 
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_a-star.js.html">src/a-star.js</a>, <a href="src_a-star.js.html#line1">line 1</a>
-    </li></ul></dd>
-    
+                <td class="type">
+                  <span class="param-type">Object</span>
+                </td>
 
-    
+                <td class="description last"><p>Target position.</p></td>
+              </tr>
+            </tbody>
+          </table>
 
-    
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="src_a-star.js.html">src/a-star.js</a>,
+                  <a href="src_a-star.js.html#line126">line 126</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
 
-    
-</dl>
+          <h5>Returns:</h5>
 
+          <div class="param-desc">
+            <p>
+              The direction (&quot;up&quot;, &quot;down&quot;, &quot;left&quot;,
+              &quot;right&quot;) or null if same position.
+            </p>
+          </div>
 
+          <dl>
+            <dt>Type</dt>
+            <dd>
+              <span class="param-type">string</span>
+              |
 
+              <span class="param-type">null</span>
+            </dd>
+          </dl>
 
+          <h4 class="name" id=".manhattan">
+            <span class="type-signature">(static) </span>manhattan<span
+              class="signature"
+              >(a, b)</span
+            ><span class="type-signature"> &rarr; {number}</span>
+          </h4>
 
+          <div class="description">
+            <p>Calculates the Manhattan distance between two points.</p>
+          </div>
 
+          <h5>Parameters:</h5>
 
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
 
+                <th>Type</th>
 
+                <th class="last">Description</th>
+              </tr>
+            </thead>
 
+            <tbody>
+              <tr>
+                <td class="name"><code>a</code></td>
 
+                <td class="type">
+                  <span class="param-type">Object</span>
+                </td>
 
+                <td class="description last">
+                  <p>First point.</p>
+                  <h6>Properties</h6>
 
+                  <table class="params">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
 
+                        <th>Type</th>
 
+                        <th class="last">Description</th>
+                      </tr>
+                    </thead>
 
+                    <tbody>
+                      <tr>
+                        <td class="name"><code>x</code></td>
 
+                        <td class="type">
+                          <span class="param-type">number</span>
+                        </td>
 
+                        <td class="description last">
+                          <p>x-coordinate of first point.</p>
+                        </td>
+                      </tr>
 
+                      <tr>
+                        <td class="name"><code>y</code></td>
 
-        
-    
+                        <td class="type">
+                          <span class="param-type">number</span>
+                        </td>
+
+                        <td class="description last">
+                          <p>y-coordinate of first point.</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>b</code></td>
+
+                <td class="type">
+                  <span class="param-type">Object</span>
+                </td>
+
+                <td class="description last">
+                  <p>Second point.</p>
+                  <h6>Properties</h6>
+
+                  <table class="params">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+
+                        <th>Type</th>
+
+                        <th class="last">Description</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td class="name"><code>x</code></td>
+
+                        <td class="type">
+                          <span class="param-type">number</span>
+                        </td>
+
+                        <td class="description last">
+                          <p>x-coordinate of second point.</p>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td class="name"><code>y</code></td>
+
+                        <td class="type">
+                          <span class="param-type">number</span>
+                        </td>
+
+                        <td class="description last">
+                          <p>y-coordinate of second point.</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="src_a-star.js.html">src/a-star.js</a>,
+                  <a href="src_a-star.js.html#line47">line 47</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            <p>The Manhattan distance.</p>
+          </div>
+
+          <dl>
+            <dt>Type</dt>
+            <dd>
+              <span class="param-type">number</span>
+            </dd>
+          </dl>
+
+          <h4 class="name" id="~coordsKey">
+            <span class="type-signature">(inner) </span>coordsKey<span
+              class="signature"
+              >(coords)</span
+            ><span class="type-signature"> &rarr; {string}</span>
+          </h4>
+
+          <div class="description">
+            <p>Generates a string key from coordinates.</p>
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>coords</code></td>
+
+                <td class="type">
+                  <span class="param-type">Object</span>
+                </td>
+
+                <td class="description last">
+                  <p>The coordinates object.</p>
+                  <h6>Properties</h6>
+
+                  <table class="params">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+
+                        <th>Type</th>
+
+                        <th class="last">Description</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td class="name"><code>x</code></td>
+
+                        <td class="type">
+                          <span class="param-type">number</span>
+                        </td>
+
+                        <td class="description last">
+                          <p>The x-coordinate.</p>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td class="name"><code>y</code></td>
+
+                        <td class="type">
+                          <span class="param-type">number</span>
+                        </td>
+
+                        <td class="description last">
+                          <p>The y-coordinate.</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="src_a-star.js.html">src/a-star.js</a>,
+                  <a href="src_a-star.js.html#line14">line 14</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            <p>The coordinates as a string key.</p>
+          </div>
+
+          <dl>
+            <dt>Type</dt>
+            <dd>
+              <span class="param-type">string</span>
+            </dd>
+          </dl>
+
+          <h4 class="name" id="~reconstructPath">
+            <span class="type-signature">(inner) </span>reconstructPath<span
+              class="signature"
+              >(cameFrom, currentKey)</span
+            ><span class="type-signature"> &rarr; {Array.&lt;Object>}</span>
+          </h4>
+
+          <div class="description">
+            <p>Reconstructs the path from the cameFrom map.</p>
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>cameFrom</code></td>
+
+                <td class="type">
+                  <span class="param-type">Map</span>
+                </td>
+
+                <td class="description last"><p>Map tracking the path.</p></td>
+              </tr>
+
+              <tr>
+                <td class="name"><code>currentKey</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last"><p>The current node's key.</p></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="src_a-star.js.html">src/a-star.js</a>,
+                  <a href="src_a-star.js.html#line24">line 24</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            <p>The reconstructed path as coordinate objects.</p>
+          </div>
+
+          <dl>
+            <dt>Type</dt>
+            <dd>
+              <span class="param-type">Array.&lt;Object></span>
+            </dd>
+          </dl>
+        </article>
+      </section>
     </div>
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".aStar"><span class="type-signature">(static) </span>aStar<span class="signature">(start, goal, board, snakeBodies)</span><span class="type-signature"> &rarr; {Array.&lt;Object>|null}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Finds the shortest path using A* algorithm.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>start</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Starting position.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>goal</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Target position.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>board</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Game board information.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>snakeBodies</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array.&lt;Array></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Array of snake body segments.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_a-star.js.html">src/a-star.js</a>, <a href="src_a-star.js.html#line59">line 59</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>The path as coordinate objects or null if no path found.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;Object></span>
-|
-
-<span class="param-type">null</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".directionFromTo"><span class="type-signature">(static) </span>directionFromTo<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {string|null}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Determines the direction from one point to another.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>a</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Starting position.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>b</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Target position.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_a-star.js.html">src/a-star.js</a>, <a href="src_a-star.js.html#line126">line 126</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>The direction (&quot;up&quot;, &quot;down&quot;, &quot;left&quot;, &quot;right&quot;) or null if same position.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-|
-
-<span class="param-type">null</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".manhattan"><span class="type-signature">(static) </span>manhattan<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {number}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Calculates the Manhattan distance between two points.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>a</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>First point.</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>x</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>x-coordinate of first point.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>y</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>y-coordinate of first point.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>b</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Second point.</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>x</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>x-coordinate of second point.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>y</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>y-coordinate of second point.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_a-star.js.html">src/a-star.js</a>, <a href="src_a-star.js.html#line47">line 47</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>The Manhattan distance.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="~coordsKey"><span class="type-signature">(inner) </span>coordsKey<span class="signature">(coords)</span><span class="type-signature"> &rarr; {string}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Generates a string key from coordinates.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>coords</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The coordinates object.</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>x</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The x-coordinate.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>y</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The y-coordinate.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_a-star.js.html">src/a-star.js</a>, <a href="src_a-star.js.html#line14">line 14</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>The coordinates as a string key.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="~reconstructPath"><span class="type-signature">(inner) </span>reconstructPath<span class="signature">(cameFrom, currentKey)</span><span class="type-signature"> &rarr; {Array.&lt;Object>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Reconstructs the path from the cameFrom map.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>cameFrom</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Map</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Map tracking the path.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>currentKey</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The current node's key.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_a-star.js.html">src/a-star.js</a>, <a href="src_a-star.js.html#line24">line 24</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>The reconstructed path as coordinate objects.</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;Object></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-aStar.html">aStar</a></li><li><a href="module-floodFill.html">floodFill</a></li><li><a href="module-foodTargeting.html">foodTargeting</a></li><li><a href="module-headToHead.html">headToHead</a></li><li><a href="module-huntSmallerSnakes.html">huntSmallerSnakes</a></li><li><a href="module-index.html">index</a></li><li><a href="module-otherSnakesCollision.html">otherSnakesCollision</a></li><li><a href="module-selfCollision.html">selfCollision</a></li><li><a href="module-tailCollision.html">tailCollision</a></li><li><a href="module-wallCollision.html">wallCollision</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Jun 16 2025 22:46:04 GMT+0300 (Eastern European Summer Time)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
-</body>
+    <nav>
+      <h2><a href="index.html">Home</a></h2>
+      <h3>Modules</h3>
+      <ul>
+        <li><a href="module-aStar.html">aStar</a></li>
+        <li><a href="module-floodFill.html">floodFill</a></li>
+        <li><a href="module-foodTargeting.html">foodTargeting</a></li>
+        <li><a href="module-headToHead.html">headToHead</a></li>
+        <li><a href="module-huntSmallerSnakes.html">huntSmallerSnakes</a></li>
+        <li><a href="module-index.html">index</a></li>
+        <li>
+          <a href="module-otherSnakesCollision.html">otherSnakesCollision</a>
+        </li>
+        <li><a href="module-selfCollision.html">selfCollision</a></li>
+        <li><a href="module-tailCollision.html">tailCollision</a></li>
+        <li><a href="module-wallCollision.html">wallCollision</a></li>
+      </ul>
+    </nav>
+
+    <br class="clear" />
+
+    <footer>
+      Documentation generated by
+      <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Mon Jun 16
+      2025 22:46:04 GMT+0300 (Eastern European Summer Time)
+    </footer>
+
+    <script>
+      prettyPrint();
+    </script>
+    <script src="scripts/linenumber.js"></script>
+  </body>
 </html>

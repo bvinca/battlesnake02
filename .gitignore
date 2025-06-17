@@ -38,3 +38,12 @@ coverage/
 .github/*
 !.github/ISSUE_TEMPLATE/
 !.github/PULL_REQUEST_TEMPLATE/
+!.github/workflows/
+
+
+# dotenv environment variables file
+.env
+.env.test
+
+# act secrets
+.secrets
