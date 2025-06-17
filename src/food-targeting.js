@@ -42,16 +42,16 @@ export function getDirectionToFood(myHead, closestFood) {
 
   // Check horizontal direction first
   if (closestFood.x < myHead.x) {
-    directions.push("left");
+    directions.push('left');
   } else if (closestFood.x > myHead.x) {
-    directions.push("right");
+    directions.push('right');
   }
 
   // Then check vertical direction
   if (closestFood.y < myHead.y) {
-    directions.push("down");
+    directions.push('down');
   } else if (closestFood.y > myHead.y) {
-    directions.push("up");
+    directions.push('up');
   }
 
   // Return all possible directions that move toward food

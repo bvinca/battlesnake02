@@ -28,8 +28,8 @@ function reconstructPath(cameFrom, currentKey) {
     currentKey = cameFrom.get(currentKey);
   }
   path.unshift(currentKey); // Add start node
-  return path.map(str => {
-    const [x, y] = str.split(',').map(Number);
+  return path.map((string_) => {
+    const [x, y] = string_.split(',').map(Number);
     return { x, y };
   });
 }
@@ -48,14 +48,24 @@ export function manhattan(a, b) {
   return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
 }
 
+function isObstacle(x, y, snakeBodies) {
+  for (const snake of snakeBodies) {
+    for (const part of snake) {
+      if (part.x === x && part.y === y) return true;
+    }
+  }
+  return false;
+}
+
 /**
  * Finds the shortest path using A* algorithm.
  * @param {Object} start - Starting position.
  * @param {Object} goal - Target position.
  * @param {Object} board - Game board information.
  * @param {Array<Array>} snakeBodies - Array of snake body segments.
- * @returns {Array<Object>|null} The path as coordinate objects or null if no path found.
+ * @returns {Array<Object>|undefined} The path as coordinate objects or undefined if no path found.
  */
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export function aStar(start, goal, board, snakeBodies) {
   const width = board.width;
   const height = board.height;
@@ -67,26 +77,20 @@ export function aStar(start, goal, board, snakeBodies) {
   const gScore = new Map([[coordsKey(start), 0]]);
   const fScore = new Map([[coordsKey(start), manhattan(start, goal)]]);
 
-  function isObstacle(x, y) {
-    for (const snake of snakeBodies) {
-      for (const part of snake) {
-        if (part.x === x && part.y === y) return true;
-      }
-    }
-    return false;
-  }
-
   while (openSet.size > 0) {
     // Get node with lowest fScore
-    let currentKey = null;
+    let currentKey;
     let currentF = Infinity;
     for (const key of openSet) {
-      if (fScore.get(key) < currentF) {
-        currentF = fScore.get(key);
+      const score = fScore.get(key) ?? Infinity;
+      if (score < currentF) {
+        currentF = score;
         currentKey = key;
       }
     }
+
     if (!currentKey) break;
+
     const [cx, cy] = currentKey.split(',').map(Number);
     if (cx === goal.x && cy === goal.y) {
       // Success: reconstruct path
@@ -96,11 +100,16 @@ export function aStar(start, goal, board, snakeBodies) {
     openSet.delete(currentKey);
     closedSet.add(currentKey);
 
-    for (const [dx, dy] of [[1,0], [-1,0], [0,1], [0,-1]]) {
+    for (const [dx, dy] of [
+      [1, 0],
+      [-1, 0],
+      [0, 1],
+      [0, -1],
+    ]) {
       const nx = cx + dx;
       const ny = cy + dy;
       if (nx < 0 || ny < 0 || nx >= width || ny >= height) continue;
-      if (isObstacle(nx, ny)) continue;
+      if (isObstacle(nx, ny, snakeBodies)) continue;
       const neighborKey = `${nx},${ny}`;
       if (closedSet.has(neighborKey)) continue;
       const tentativeG = gScore.get(currentKey) + 1;
@@ -113,20 +122,18 @@ export function aStar(start, goal, board, snakeBodies) {
     }
   }
   // No path found
-  return null;
 }
 
 /**
  * Determines the direction from one point to another.
  * @param {Object} a - Starting position.
  * @param {Object} b - Target position.
- * @returns {string|null} The direction ("up", "down", "left", "right") or null if same position.
+ * @returns {string|undefined} The direction ("up", "down", "left", "right") or undefined if same position.
  */
 // Convert a step to Battlesnake direction string
 export function directionFromTo(a, b) {
-  if (b.x > a.x) return "right";
-  if (b.x < a.x) return "left";
-  if (b.y > a.y) return "up";
-  if (b.y < a.y) return "down";
-  return null;
+  if (b.x > a.x) return 'right';
+  if (b.x < a.x) return 'left';
+  if (b.y > a.y) return 'up';
+  if (b.y < a.y) return 'down';
 }
