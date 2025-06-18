@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.2.0] - 2025-06-18
+
 ### Added
 
 - Added `.github/dependabot.yml` to enable automated dependency and security updates.
@@ -9,6 +11,7 @@
 - Added the a-star path finding algorithm
 - Added JSDoc comments
 - Generated HTML Documentation
+- Added GitHub Actions
 
 ### Fixed
 
