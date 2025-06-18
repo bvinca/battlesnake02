@@ -1,6 +1,22 @@
-// head-to-head-collision.js
+/**
+ * Head-to-head collision detection utilities.
+ * @module headToHead
+ */
 
-export function checkHeadToHeadCollision(myHead, opponents, myLength, isMoveSafe) {
+/**
+ * Checks for potential head-to-head collisions with opponents.
+ * @param {Object} myHead - Current snake head position.
+ * @param {Array<Object>} opponents - Array of opponent snakes.
+ * @param {number} myLength - Current snake length.
+ * @param {Object} isMoveSafe - Object tracking safe moves.
+ * @returns {Object} Updated isMoveSafe object.
+ */
+export function checkHeadToHeadCollision(
+  myHead,
+  opponents,
+  myLength,
+  isMoveSafe,
+) {
   const myPossibleMoves = {
     left: { x: myHead.x - 1, y: myHead.y },
     right: { x: myHead.x + 1, y: myHead.y },
@@ -22,7 +38,7 @@ export function checkHeadToHeadCollision(myHead, opponents, myLength, isMoveSafe
       ];
 
       const threatensSameSquare = opponentPossibleMoves.some(
-        move => move.x === myMove.x && move.y === myMove.y
+        (move) => move.x === myMove.x && move.y === myMove.y,
       );
 
       if (threatensSameSquare && snake.length >= myLength) {
