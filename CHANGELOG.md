@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+### Added
+
+### Fixed
+
+- Updated the test for the wall collision feature
+
 ## [1.2.0] - 2025-06-18
 
 ### Added
