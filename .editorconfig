@@ -1,7 +1,5 @@
-# Top-most EditorConfig file
 root = true
 
-# Default settings for all files
 [*]
 charset = utf-8
 indent_style = space
@@ -21,3 +19,5 @@ indent_size = 2
 # Special rules for YAML files
 [*.yml]
 indent_size = 2
+[CHANGELOD.md]
+indent_size = 4
