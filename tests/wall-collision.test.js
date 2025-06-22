@@ -52,7 +52,8 @@ describe('checkWallCollision', () => {
   });
 
   it('works with non-square boards', () => {
-    const w = 15, h = 7;
+    const w = 15,
+      h = 7;
     const myHead = { x: 14, y: 0 };
     const isMoveSafe = { up: true, down: true, left: true, right: true };
     const result = checkWallCollision(myHead, w, h, { ...isMoveSafe });
