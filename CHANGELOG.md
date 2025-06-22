@@ -4,7 +4,7 @@
 
 ### Added
 
-### Fixed 
+### Fixed
 
 - Updated the test for the wall collision feature
 
